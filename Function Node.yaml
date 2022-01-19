@@ -1,0 +1,13 @@
+const cs = global.get('homeassistant').homeAssistant.states[msg.topic].state;
+const cc = global.get('homeassistant').homeAssistant.states[msg.topic].attributes.rgb_color;
+const cb = global.get('homeassistant').homeAssistant.states[msg.topic].attributes.brightness;
+const ce = global.get('homeassistant').homeAssistant.states[msg.topic].attributes.effect;
+
+msg.payload = { "domain": "light", "service": "turn_" + cs,
+    data: {
+        "rgb_color": cc,
+        "brightness": cb,
+        "effect": ce
+    }
+};
+return msg;
