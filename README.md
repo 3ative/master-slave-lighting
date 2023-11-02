@@ -7,6 +7,11 @@ const cc = global.get('homeassistant').homeAssistant.states[msg.topic].attribute
 const cb = global.get('homeassistant').homeAssistant.states[msg.topic].attributes.brightness;
 const ce = global.get('homeassistant').homeAssistant.states[msg.topic].attributes.effect;
 
+if (msg.payload == "off") {
+    msg.payload = {"domain": "light", "service": "turn_off" };
+    return msg;
+};
+
 msg.payload = { "domain": "light", "service": "turn_" + cs,
     data: {
         "rgb_color": cc,
