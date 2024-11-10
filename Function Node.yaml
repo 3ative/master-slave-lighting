@@ -3,7 +3,12 @@ const cc = global.get('homeassistant').homeAssistant.states[msg.topic].attribute
 const cb = global.get('homeassistant').homeAssistant.states[msg.topic].attributes.brightness;
 const ce = global.get('homeassistant').homeAssistant.states[msg.topic].attributes.effect;
 
-msg.payload = { "domain": "light", "service": "turn_" + cs,
+if (msg.payload == "off") {
+    msg.payload = {"action": "light.turn_off" };
+    return msg;
+};
+
+msg.payload = { "action": "light.turn_" + cs,
     data: {
         "rgb_color": cc,
         "brightness": cb,
