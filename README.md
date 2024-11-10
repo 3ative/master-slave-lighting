@@ -8,11 +8,11 @@ const cb = global.get('homeassistant').homeAssistant.states[msg.topic].attribute
 const ce = global.get('homeassistant').homeAssistant.states[msg.topic].attributes.effect;
 
 if (msg.payload == "off") {
-    msg.payload = {"domain": "light", "service": "turn_off" };
+    msg.payload = {"action": "light.turn_off" };
     return msg;
 };
 
-msg.payload = { "domain": "light", "service": "turn_" + cs,
+msg.payload = { "action": "light.turn_" + cs,
     data: {
         "rgb_color": cc,
         "brightness": cb,
